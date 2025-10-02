@@ -15,6 +15,7 @@ jobs:
     steps:
       - name: first task
         run: echo Hello from first job
+      - uses: actions/checkout@v1
 
   depjob:
     needs: [testjob]
