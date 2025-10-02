@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - name: second job task
-        run: ls -l
+        run: ls -la
         
     
   
