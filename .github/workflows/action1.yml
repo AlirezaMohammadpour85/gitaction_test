@@ -8,10 +8,9 @@ on:
   push:
     branches: main
 env:
-  GlobVAR: globvar1
+  GlobVAR: ${{ github.sha }}
 
 jobs: 
-run-name: test-run1
   testjob:
     env:
       VAR1JOB1: var1j1
@@ -20,9 +19,13 @@ run-name: test-run1
     steps:
       - name:  job task before clone
         run: ls -la
-        
+      
       - name: first task
-        run: echo Hello from first job
+        run: |
+          echo "Hello from j1 variable: ${{ env.VAR1JOB1 }} and ${{ env.VAR2J1 }}"
+          echo "glob var: ${{ env.GlobVAR }}"
+        
+      
       - uses: actions/checkout@v1
       
       - name:  job task after clone
