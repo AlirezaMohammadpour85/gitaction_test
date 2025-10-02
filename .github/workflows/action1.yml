@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - name: second job task
-        run: echo Hello from secondjob
+        run: echo Hello from secondjob && ls -ll
         
     
   
