@@ -10,7 +10,7 @@ on:
 
 jobs:
   testjob:
-    runs-on: [ubuntu]
+    runs-on: ubuntu-latest
 
     steps:
       - name: first task
@@ -18,7 +18,7 @@ jobs:
 
   depjob:
     needs: [testjob]
-    runs-on: [ubuntu]  
+    runs-on: ubuntu-latest 
     steps:
       - name: second job task
         run: echo Hello from secondjob
