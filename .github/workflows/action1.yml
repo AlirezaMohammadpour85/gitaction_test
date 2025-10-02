@@ -37,11 +37,16 @@ jobs:
     steps:
       - name: second job task
         run: ls -la
+        #######################################
+        # check app existence: all exist!!!
+        ######################################
       - name: check if aws cli exits
         run: aws --version
-
       - name: check if zip exist
         run: zip --version
+
+      - name: chekc if terraform exist
+        run: terraform --version
         
     
   
