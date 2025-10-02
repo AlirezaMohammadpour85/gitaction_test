@@ -45,8 +45,9 @@ jobs:
       - name: check if zip exist
         run: zip --version
 
-      - name: chekc if terraform exist
+      - name: check if Terraform exist
         run: terraform version
+        if: success() 
         
     
   
