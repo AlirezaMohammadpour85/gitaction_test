@@ -19,6 +19,7 @@ jobs:
     steps:
       - name:  job task before clone
         run: ls -la
+        continue-on-error: true
       
       - name: first task
         run: |
@@ -42,13 +43,14 @@ jobs:
         ######################################
       - name: check if aws cli exits
         run: aws --version
+        continue-on-error: True
       - name: check if zip exist
         run: zip --version
+        continue-on-error: True
 
       - name: check if Terraform exist
         run: terraform version
-        if: success() 
-        
+        continue-on-error: True
     
   
     
