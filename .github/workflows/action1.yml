@@ -37,6 +37,11 @@ jobs:
     steps:
       - name: second job task
         run: ls -la
+      - name: check if aws cli exits
+        run: aws --version
+
+      - name: check if zip exist
+        run: zip --version
         
     
   
