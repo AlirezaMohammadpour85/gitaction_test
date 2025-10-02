@@ -7,16 +7,27 @@ name: Manual workflow
 on:
   push:
     branches: main
+env:
+  GlobVAR: globvar1
 
-jobs:
+jobs: 
+run-name: test-run1
   testjob:
+    env:
+      VAR1JOB1: var1j1
+      VAR2J1: var2j1
     runs-on: ubuntu-latest
-
     steps:
+      - name:  job task before clone
+        run: ls -la
+        
       - name: first task
         run: echo Hello from first job
       - uses: actions/checkout@v1
-
+      
+      - name:  job task after clone
+        run: ls -la
+        
   depjob:
     needs: [testjob]
     runs-on: ubuntu-latest 
