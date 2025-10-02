@@ -46,7 +46,7 @@ jobs:
         run: zip --version
 
       - name: chekc if terraform exist
-        run: terraform --version
+        run: terraform version
         
     
   
