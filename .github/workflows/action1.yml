@@ -22,7 +22,7 @@ jobs:
       - name:  install dependencies
         run: npm ci
       - name:  run linters
-        run: npm lint
+        run: npm run lint
   Testjob:
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +31,7 @@ jobs:
       - name:  install dependencies
         run: npm ci
       - name:  run tests
-        run: npm test
+        run: npm run test
   Deployjob:
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +40,7 @@ jobs:
       - name:  install dependencies
         run: npm ci
       - name:  run deploy script
-        run: npm deploy
+        run: npm run deploy
     
       # - name: first task
       #   run: |
