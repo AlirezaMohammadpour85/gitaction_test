@@ -7,50 +7,71 @@ name: FirstManualWorkflow
 on:
   push:
     branches: main
-env:
-  GlobVAR: ${{ github.sha }}
+# env:
+#   GlobVAR: ${{ github.sha }}
 
 jobs: 
-  testjob:
-    env:
-      VAR1JOB1: var1j1
-      VAR2J1: var2j1
+  Lintjob:
+    # env:
+    #   VAR1JOB1: var1j1
+    #   VAR2J1: var2j1
     runs-on: ubuntu-latest
     steps:
-      - name:  job task before clone
-        run: ls -la
-        continue-on-error: true
-      
-      - name: first task
-        run: |
-          echo "Hello from j1 variable: ${{ env.VAR1JOB1 }} and ${{ env.VAR2J1 }}"
-          echo "glob var: ${{ env.GlobVAR }}"
-        
-      
-      - uses: actions/checkout@v1
-      
-      - name:  job task after clone
-        run: ls -la
-        
-  depjob:
-    needs: [testjob]
-    runs-on: ubuntu-latest 
+      - name:  clone repo
+        uses: actions/checkout@v6
+      - name:  install dependencies
+        run: npm ci
+      - name:  run linters
+        run: npm lint
+  Testjob:
+    runs-on: ubuntu-latest
     steps:
-      - name: second job task
-        run: ls -la
-        #######################################
-        # check app existence: all exist!!!
-        ######################################
-      - name: check if aws cli exits
-        run: aws --version
-        continue-on-error: True
-      - name: check if zip exist
-        run: zip --version
-        continue-on-error: True
+      - name:  clone repo
+        uses: actions/checkout@v6
+      - name:  install dependencies
+        run: npm ci
+      - name:  run tests
+        run: npm test
+  Deployjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  clone repo
+        uses: actions/checkout@v6
+      - name:  install dependencies
+        run: npm ci
+      - name:  run deploy script
+        run: npm deploy
+    
+      # - name: first task
+      #   run: |
+      #     echo "Hello from j1 variable: ${{ env.VAR1JOB1 }} and ${{ env.VAR2J1 }}"
+      #     echo "glob var: ${{ env.GlobVAR }}"
+        
+      
+  #     - uses: actions/checkout@v1
+      
+  #     - name:  job task after clone
+  #       run: ls -la
+        
+  # depjob:
+  #   needs: [testjob]
+  #   runs-on: ubuntu-latest 
+  #   steps:
+  #     - name: second job task
+  #       run: ls -la
+  #       #######################################
+  #       # check app existence: all exist!!!
+  #       ######################################
+  #     - name: check if aws cli exits
+  #       run: aws --version
+  #       continue-on-error: True
+  #     - name: check if zip exist
+  #       run: zip --version
+  #       continue-on-error: True
 
-      - name: check if Terraform exist
-        run: terraform version
-        continue-on-error: True
+  #     - name: check if Terraform exist
+  #       run: terraform version
+  #       continue-on-error: True
     
   
     
