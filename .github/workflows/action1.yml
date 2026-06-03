@@ -40,7 +40,7 @@ jobs:
       - name:  install dependencies
         run: npm ci
       - name:  run deploy script
-        run: npm run deploy
+        run: npm run build
     
       # - name: first task
       #   run: |
