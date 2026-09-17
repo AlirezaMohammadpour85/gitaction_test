@@ -1,0 +1,19 @@
+name: section_3_prctice
+on:  [workflow_dispatch, push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+      - name: Run tests
+        run: npm test
+      - name: Build project
+        run: npm run build
+      - name: simulte deploy 
+        run: echo "Simulating deployment..."
